@@ -2,6 +2,7 @@
 # ChibiHashGo
 
 ChibiHashGo is a simple, fast 64-bit hash function implemented in Go. It's designed for performance and ease of use in applications where hashing is required.
+Go port of N-R-K/ChibiHash. See the article ChibiHash: A small, fast 64-bit hash function for more information.
 
 ## Features
 - Minimal dependencies
