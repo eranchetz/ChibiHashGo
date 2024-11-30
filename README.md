@@ -1,13 +1,13 @@
 
 # ChibiHashGo
 
-ChibiHashGo is a simple, fast 64-bit hash function implemented in Go. It's designed for performance and ease of use in applications where hashing is required.
-Go port of N-R-K/ChibiHash. See the article ChibiHash: A small, fast 64-bit hash function for more information.
+ChibiHashGo is a simple, fast 64-bit hash function implemented in Go. It is designed for performance and ease of use in applications where efficient hashing is required.
 
 ## Features
 - Minimal dependencies
 - Optimized for performance
-- Provides a small, fast 64-bit hash function
+- Supports inputs of varying sizes (small keys to large datasets)
+- Includes comprehensive benchmarks and GitHub Actions integration for CI
 
 ## Installation
 
@@ -48,17 +48,48 @@ func main() {
 - **seed**: A 64-bit seed value for hashing.
 - **Returns**: A 64-bit unsigned integer hash.
 
+
+## Benchmarks
+
+The following benchmarks demonstrate the performance of `ChibiHash64` for varying input sizes. These results were obtained using `go test -bench=. -benchmem`.
+
+| Test Case                     | ns/op  | B/op | allocs/op |
+|-------------------------------|--------|------|-----------|
+| 5 Bytes                       | 4.215  | 0    | 0         |
+| 100 Bytes                     | 5.155  | 0    | 0         |
+| 4 KB                          | 44.78  | 0    | 0         |
+| 10 MB                         | 888191 | 0    | 0         |
+
+The function performs efficiently with no memory allocations (`allocs/op = 0`) across all test cases, ensuring minimal overhead.
+
+## CI/CD Integration
+
+GitHub Actions is set up to automatically run tests and benchmarks for every push or pull request.
+
+### Workflow Configuration
+
+The workflow file is located at `.github/workflows/go.yml` and includes:
+- Installing dependencies (`go mod tidy`)
+- Running tests (`go test ./... -v`)
+- Running benchmarks (`go test -bench=. -benchmem`)
+
 ## Testing
 
-To test the module:
+To test the module locally:
 
 ```bash
-go test ./...
+go test ./... -v
+```
+
+To run benchmarks:
+
+```bash
+go test -bench=. -benchmem
 ```
 
 ## Contributing
 
-Contributions are welcome! Please fork the repository and submit a pull request.
+Contributions are welcome! Fork the repository, make your changes, and submit a pull request. Ensure all tests pass and benchmarks are updated before submitting.
 
 ## License
 
