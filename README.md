@@ -28,7 +28,7 @@ package main
 
 import (
     "fmt"
-    "github.com/yourusername/ChibiHashGo"
+    "github.com/eranchetz/ChibiHashGo"
 )
 
 func main() {
